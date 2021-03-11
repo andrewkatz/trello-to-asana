@@ -52,7 +52,6 @@ lists.each do |list|
 
   puts 'Fetching cards'
   cards = trello_client.list_cards(list, max: TRELLO_MAX)
-  puts cards.size
 
   puts 'Creating tasks'
   processed_cards = []
@@ -95,6 +94,14 @@ lists.each do |list|
 
         processed_check_items << check_item.id
       end
+    end
+
+    puts 'Fetching comments'
+    comments = trello_client.card_actions(card, filter: 'comment_card')
+    comments.each do |comment|
+      text = "#{comment[:member_creator][:full_name]}:\n#{comment[:data][:text]}"
+      puts "Adding comment: '#{text}'"
+      task.add_comment(text: text)
     end
 
     processed_cards << card.id
