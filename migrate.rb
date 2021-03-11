@@ -73,14 +73,22 @@ lists.each do |list|
     card.checklist_ids.each do |checklist_id|
       puts "Fetching items on checklist #{checklist_id}"
       check_items = []
+      processed_check_items = []
+
       trello_client.check_items(checklist_id).each do |check_item|
         check_items << check_item
       end
+
       check_items.sort { |a, b| b.pos <=> a.pos }.each do |check_item|
+        next if processed_check_items.include?(check_item.id)
+
         puts "Creating subtask #{check_item.name}"
         task.add_subtask(name: check_item.name, completed: check_item.state == 'complete')
+
+        processed_check_items << check_item.id
       end
     end
+
     processed_cards << card.id
   end
 end
