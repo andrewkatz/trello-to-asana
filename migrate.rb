@@ -70,12 +70,17 @@ lists.each do |list|
     puts 'Adding to project / section'
     task.add_project(project: project.gid, section: section.gid)
 
+    multiple_checklists = card.checklist_ids.size > 1
+
     card.checklist_ids.each do |checklist_id|
-      puts "Fetching items on checklist #{checklist_id}"
+      puts "Fetching checklist #{checklist_id}"
+      checklist = trello_client.checklist(checklist_id)
+
+      puts "Fetching items on checklist #{checklist.name}"
       check_items = []
       processed_check_items = []
 
-      trello_client.check_items(checklist_id).each do |check_item|
+      trello_client.check_items(checklist).each do |check_item|
         check_items << check_item
       end
 
@@ -83,7 +88,10 @@ lists.each do |list|
         next if processed_check_items.include?(check_item.id)
 
         puts "Creating subtask #{check_item.name}"
-        task.add_subtask(name: check_item.name, completed: check_item.state == 'complete')
+        task.add_subtask(
+          name: [(checklist.name if multiple_checklists), check_item.name].compact.join(': '),
+          completed: check_item.state == 'complete'
+        )
 
         processed_check_items << check_item.id
       end
