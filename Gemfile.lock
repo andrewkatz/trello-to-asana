@@ -1,0 +1,74 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
+    asana (0.10.0)
+      faraday (~> 0.9)
+      faraday_middleware (~> 0.9)
+      faraday_middleware-multi_json (~> 0.0)
+      oauth2 (~> 1.4)
+    awesome_print (1.9.2)
+    faraday (0.9.1)
+      multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.14.0)
+      faraday (>= 0.7.4, < 1.0)
+    faraday_middleware-multi_json (0.0.6)
+      faraday_middleware
+      multi_json
+    jwt (2.2.2)
+    multi_json (1.15.0)
+    multi_xml (0.6.0)
+    multipart-post (2.1.1)
+    oauth2 (1.4.4)
+      faraday (>= 0.8, < 2.0)
+      jwt (>= 1.0, < 3.0)
+      multi_json (~> 1.3)
+      multi_xml (~> 0.5)
+      rack (>= 1.2, < 3)
+    pastel (0.8.0)
+      tty-color (~> 0.5)
+    public_suffix (4.0.6)
+    rack (2.2.3)
+    simple_oauth (0.3.1)
+    strings (0.2.1)
+      strings-ansi (~> 0.2)
+      unicode-display_width (>= 1.5, < 3.0)
+      unicode_utils (~> 1.4)
+    strings-ansi (0.2.0)
+    tacokit (0.4.0)
+      addressable
+      faraday (= 0.9.1)
+      faraday_middleware
+      simple_oauth
+    tty-box (0.7.0)
+      pastel (~> 0.8)
+      strings (~> 0.2.0)
+      tty-cursor (~> 0.7)
+    tty-color (0.6.0)
+    tty-cursor (0.7.1)
+    tty-prompt (0.23.0)
+      pastel (~> 0.8)
+      tty-reader (~> 0.8)
+    tty-reader (0.9.0)
+      tty-cursor (~> 0.7)
+      tty-screen (~> 0.8)
+      wisper (~> 2.0)
+    tty-screen (0.8.1)
+    unicode-display_width (2.0.0)
+    unicode_utils (1.4.0)
+    wisper (2.0.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  asana
+  awesome_print
+  pastel
+  tacokit
+  tty-box
+  tty-prompt
+
+BUNDLED WITH
+   2.1.4
